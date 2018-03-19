@@ -15,15 +15,16 @@ function getUrl() {
         })
 }
 
-const commands ={
-    '/cat' : (msg,response) => bot.sendMessage(msg.chat.id,response)
+const commands = {
+    '/cat': (msg, response) => bot.sendVideo(msg.chat.id, response),
+    '/help': (msg, response) => bot.sendMessage(msg.chat.id, "you can use /cat to see random gif of cats")
 }
 
 bot.on('message', (msg) => {
     getUrl().then(response => {
         const text = msg.text;
-        const [command, ...args]=msg.text.split(' ');
-        commands[command](msg,response)
+        const [command, ...args] = msg.text.split(' ');
+        commands[command](msg, response)
     })
 });
 
